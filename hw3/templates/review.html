@@ -9,7 +9,9 @@
 <body>
     <h1>Review Page</h1>
     <p>Movie: {{ review.title }}</p>
-    <p>Rating: {{ review.rating }}</p>
+    <p>Rating: {% for i in range(review.rating) %}
+        *
+        {% endfor %}</p>
     <p>Content: {{ review.text }}</p>
     <p><a href="{{ url_for('reviews') }}">Back to Reviews</a></p>
 </body>

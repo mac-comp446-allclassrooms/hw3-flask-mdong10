@@ -9,9 +9,11 @@
 <body>
     <h1>Edit Review</h1>
     <p>Current Review</p>
-    <td>{{ review.title }}</a></td>
-    <td>{{ review.content }}</td>
-    <td>{{ review.rating }}</td>
+    <p>Movie: {{ review.title }}</p>
+    <p>Rating: {% for i in range(review.rating) %}
+        *
+        {% endfor %}</p>
+    <p>Content: {{ review.text }}</p>
     <p>Edits</p>
     <form method="POST" action="{{ url_for('editSubmit', review_id=review.id) }}">
         <label for="title">Title:</label>
