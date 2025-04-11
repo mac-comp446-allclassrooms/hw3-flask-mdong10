@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Reviews!</h1>
+    <table>
+        <tr>
+            <th>Details</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Rating</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for review in reviews %}
+        <tr>
+            
+            <td><a href="{{ url_for('review', review_id=review.id)}}">Details</a></td>
+            <td>{{ review.title }}</a></td>
+            <td>{{ review.text }}</td>
+            <td>{{ review.rating }}</td>
+            <td><a href="{{ url_for('edit', review_id=review.id)}}">Edit</a></td>
+            <td><a href="{{ url_for('delete', review_id=review.id)}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('add') }}">Add a new review</a></p>
+
+
+</body>
+</html>
