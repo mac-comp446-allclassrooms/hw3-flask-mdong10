@@ -1,3 +1,4 @@
+<!-- coded with help of github copilot -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
             <td><a href="{{ url_for('review', review_id=review.id)}}">{{ review.title }}</a></td>
             <td>{{ review.text }}</td>
             <td>{% for i in range(review.rating) %}
-                *
+                <img src="{{ url_for('static', filename='image.png') }}" alt="Star" style="width:20px;height:20px;">
                 {% endfor %}
             </td>
             <td><a href="{{ url_for('edit', review_id=review.id)}}">Edit</a></td>

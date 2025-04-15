@@ -4,7 +4,7 @@ from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from flask import render_template, request
 
-## *Coded with the help of github copilot
+## Coded with the help of github copilot
 
 # Initialize Flask App
 app = Flask(__name__)
