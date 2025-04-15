@@ -1,0 +1,77 @@
+/* https://www.w3schools.com/css/css_link.asp */
+
+* {
+  font-family: Ubuntu, Verdana, sans-serif;
+}
+
+body {
+    font-size: large;
+    background-color: cornsilk;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #02b3d6;
+    background-color: white;
+}
+
+th {
+    background-color: #e3f7fc;
+    color: #036d82;
+}
+
+a:visited {
+  color: #036d82;
+}
+
+a:link {
+  color: #02b3d6;
+}
+
+/* https://www.w3schools.com/css/css_form.asp */
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #02b3d6;
+    border-radius: 4px;
+    background-color: white;
+  }
+
+textarea {
+width: 100%;
+height: 150px;
+padding: 12px 20px;
+box-sizing: border-box;
+border: 2px solid #02b3d6;
+border-radius: 4px;
+background-color: white;
+resize: none;
+}
+
+
+h2 {
+  color: #02b3d6;
+}
+input[type=button], input[type=submit], input[type=reset], input[type=number] {
+    border: none;
+    padding: 16px 32px;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #e3f7fc;
+    border-color: #02b3d6;
+    font-family: Tahoma, Verdana, sans-serif;
+  }
+
+h1 {
+  color: #036d82;
+}

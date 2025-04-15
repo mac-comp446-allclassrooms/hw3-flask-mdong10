@@ -1,0 +1,21 @@
+<!-- coded with help of github copilot -->
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Review Page for {{ review.title }}</h1>
+    <p>Movie: {{ review.title }}</p>
+    <p>Rating: {% for i in range(review.rating) %}
+        <img src="{{ url_for('static', filename='image.png') }}" alt="Star" style="width:20px;height:20px;">
+        {% endfor %}</p>
+    <p>Content: {{ review.text }}</p>
+    <p><a href="{{ url_for('reviews') }}">Back to Reviews</a></p>
+</body>
+</html>
+    

@@ -1,0 +1,40 @@
+<!-- coded with help of github copilot -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Reviews!</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Rating</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for review in reviews %}
+        <tr>
+            
+            <!-- <td><a href="{{ url_for('review', review_id=review.id)}}">Details</a></td> -->
+            <td><a href="{{ url_for('review', review_id=review.id)}}">{{ review.title }}</a></td>
+            <td>{{ review.text }}</td>
+            <td>{% for i in range(review.rating) %}
+                <img src="{{ url_for('static', filename='image.png') }}" alt="Star" style="width:20px;height:20px;">
+                {% endfor %}
+            </td>
+            <td><a href="{{ url_for('edit', review_id=review.id)}}">Edit</a></td>
+            <td><a href="{{ url_for('delete', review_id=review.id)}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{ url_for('add') }}">Add a new review</a></p>
+
+
+</body>
+</html>

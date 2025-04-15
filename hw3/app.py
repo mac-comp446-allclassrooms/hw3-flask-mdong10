@@ -2,6 +2,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from flask import render_template, request
+
+## Coded with the help of github copilot
 
 # Initialize Flask App
 app = Flask(__name__)
@@ -88,11 +91,65 @@ def reset_db():
 # ROUTES
 """You will add all of your routes below, there is a sample one which you can use for testing"""
 
-@app.route('/')
+@app.route('/', endpoint="reviews")
 def show_all_reviews():
-    return 'Welcome to Movie Theater reviews!'
+    """Display all reviews."""
+    reviews = db_manager.get()
+    return render_template("reviews.html", reviews=reviews)
 
-  
+@app.route("/review/<review_id>", endpoint="review")
+def show_review(review_id):
+    """Display a specific review."""
+    review_id = int(review_id)
+    review = db_manager.get(review_id)
+    if review:
+        return render_template("review.html", review=review)
+    return "Review not found", 404
+
+@app.route("/edit/<review_id>", endpoint="edit")
+def edit_review(review_id):
+    """Edit a specific review. Returns the editing page"""
+    review_id = int(review_id)
+    review = db_manager.get(review_id)
+    if review:
+        return render_template("edit_review.html", review=review)
+    return "Review not found", 404
+
+@app.route("/edit/<review_id>", endpoint="editSubmit", methods=["POST"])
+def edit_review(review_id):
+    """Edit a specific review. Updates the review in the database."""
+    review_id = int(review_id)
+    review = db_manager.get(review_id)
+    if review:
+        title = request.form.get("title")
+        text = request.form.get("content")
+        rating = int(request.form.get("rating"))
+        db_manager.update(review_id, title, text, rating)
+        return render_template("review.html", review=review)
+
+@app.route("/delete/<review_id>", endpoint="delete", methods=["POST", "GET"])
+def delete_review(review_id):
+    """Delete a specific review. Removes the review from the database."""
+    review_id = int(review_id)
+    db_manager.delete(review_id)
+    reviews = db_manager.get()
+    return render_template("reviews.html", reviews=reviews)
+
+@app.route("/add", endpoint="add")
+def add_review():
+    """Display the form to add a new review."""
+    return render_template("add_review.html")
+
+@app.route("/add", endpoint="addSubmit", methods=["POST"])
+def add_review():
+    """Add a new review. Takes the data from the form and adds it to the database."""
+    title = request.form.get("title")
+    text = request.form.get("content")
+    rating = int(request.form.get("rating"))
+    db_manager.create(title, text, rating)
+    reviews = db_manager.get()
+    return render_template("reviews.html", reviews=reviews)
+
 # RUN THE FLASK APP
 if __name__ == "__main__":
     with app.app_context():
